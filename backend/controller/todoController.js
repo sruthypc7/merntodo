@@ -1,5 +1,5 @@
 import Todos from "../models/todoModel.js";
-let createTodo=async (req, res) => {
+let createTodo = async (req, res) => {
     console.log(req.body);
     try {
         let todo = await Todos.create({
@@ -14,7 +14,7 @@ let createTodo=async (req, res) => {
 
 
 }
-let getTodos=async (req, res) => {
+let getTodos = async (req, res) => {
     try {
         let todos = await Todos.find()
         console.log(todos);
@@ -24,4 +24,36 @@ let getTodos=async (req, res) => {
         console.log(error);
     }
 }
-export{createTodo,getTodos}
+const deleteTodo = async (req, res) => {
+    //console.log(req.params.id)
+    try {
+
+        const deletedTodo = await Todos.findByIdAndDelete(req.params.id)
+        if (!deletedTodo) {
+            return res.status(404).json({ message: 'todo is not found' })
+        }
+        return res.json({ message: 'deleted todo document' })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+const updateTodo = async (req, res) => {
+   // console.log(req.query.id)
+    try{
+        let {title,description,isCompleted}=req.body
+        const updatedTodo= await Todos.findByIdAndUpdate(req.query.id,{title ,description ,isCompleted })
+        if(!updatedTodo){
+            return   res.status(404).json({ message: 'todo is not found' })
+        }
+        return res.json({ message: 'updated todo document successfully' })
+
+    }
+    catch(error)
+    {
+        console.log(error)
+    }
+   
+}
+export { createTodo, getTodos, deleteTodo, updateTodo}
