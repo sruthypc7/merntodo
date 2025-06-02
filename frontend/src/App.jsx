@@ -6,9 +6,10 @@ function App() {
 
   return (
       <>
-      <Homescreen/>
+      
       <Routes>
         <Route path="/" element={<Homescreen/>}/>
+        <Route path="/edit/:id" element={<Updatetodo/>}/>
       </Routes>
     </>
 

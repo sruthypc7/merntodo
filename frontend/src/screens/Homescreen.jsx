@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Homescreens.css'
 import{useState} from "react";
 import instance from '../axios';
+import { useNavigate } from 'react-router-dom';
 
 function Homescreen() {
   // let [state,updateState] = useState(initialValue)
@@ -9,6 +10,7 @@ function Homescreen() {
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
   let [todos,setTodos]=useState([])
+  const navigate=useNavigate();
 
   
   let getTodos=async()=>{
@@ -16,12 +18,20 @@ function Homescreen() {
     setTodos(response.data);
     
   };
-  getTodos();
+  useEffect(()=>
+    {getTodos();},[])
+  
 
   const submitHandler = async (e) => {
     e.preventDefault();
     await instance.post("/",{title,description});
+    getTodos()
   };
+  let deletehandler=async(id)=>{
+    await instance.delete(`${id}`);
+    getTodos();
+   
+  }
 
   return (
 <>
@@ -57,8 +67,8 @@ function Homescreen() {
               </h1>
               <p className="todo-description">{todo.description}</p>
               <div className="button-group">
-                <button className="delete-btn">Delete</button>
-                {!todo.status && <button className="edit-btn">Edit</button>}
+                <button className="delete-btn"onClick={()=>deletehandler(todo._id)}>Delete</button>
+                {!todo.status && <button className="edit-btn" onClick={()=>navigate(`/edit/${todo._id}`)}>Edit</button>}
               </div>
             </div>
           ))}
