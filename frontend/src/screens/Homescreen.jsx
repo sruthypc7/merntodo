@@ -1,41 +1,59 @@
-import React, { useEffect } from 'react'
 import './Homescreens.css'
-import{useState} from "react";
+import { useState, useEffect } from "react";
 import instance from '../axios';
 import { useNavigate } from 'react-router-dom';
+import { useGetTodosQuery,useCreateTodoMutation,useDeleteTodoMutation } from '../slices/todoApiSlice';
 
 function Homescreen() {
   // let [state,updateState] = useState(initialValue)
 
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
-  let [todos,setTodos]=useState([])
-  const navigate=useNavigate();
 
-  
-  let getTodos=async()=>{
-    let response=await instance.get("/getTodos")
-    setTodos(response.data);
-    
-  };
-  useEffect(()=>
-    {getTodos();},[])
-  
+  const navigate = useNavigate();
+
+  const { data: todos, refetch } = useGetTodosQuery();
+  const [createTodo]=useCreateTodoMutation();
+  const [deleteTodo]=useDeleteTodoMutation();
+
 
   const submitHandler = async (e) => {
-    e.preventDefault();
-    await instance.post("/",{title,description});
-    getTodos()
+    try{
+      e.preventDefault();
+      await createTodo({title,description});
+      setTitle("");
+      setDescription("");
+        refetch();
+
+      
+
+      
+    }
+    catch(error){
+      console.log(error)
+
+    }
   };
-  let deletehandler=async(id)=>{
-    await instance.delete(`${id}`);
-    getTodos();
-   
+  let deletehandler = async (id) => {
+
+    try{
+      await deleteTodo(id)
+    refetch();
+    }
+    catch(error){
+      console.log(error);
+    }
+
+
+
+    
+
+
   }
 
   return (
-<>
-    <button className="delete-btn">Logout</button>
+    <>
+      <button className="delete-btn">Logout</button>
 
       <div className="container">
         <div className="form-container">
@@ -67,8 +85,8 @@ function Homescreen() {
               </h1>
               <p className="todo-description">{todo.description}</p>
               <div className="button-group">
-                <button className="delete-btn"onClick={()=>deletehandler(todo._id)}>Delete</button>
-                {!todo.status && <button className="edit-btn" onClick={()=>navigate(`/edit/${todo._id}`)}>Edit</button>}
+                <button className="delete-btn" onClick={() => deletehandler(todo._id)}>Delete</button>
+                {!todo.status && <button className="edit-btn" onClick={() => navigate(`/edit/${todo._id}`)}>Edit</button>}
               </div>
             </div>
           ))}
@@ -76,7 +94,7 @@ function Homescreen() {
       </div>
     </>
   )
-  
+
 
 }
 

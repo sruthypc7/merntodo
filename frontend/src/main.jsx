@@ -9,7 +9,6 @@ import{store} from "./store.js";
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <App />
     <Provider store={store}>
       <App/>
     </Provider>
