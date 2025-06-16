@@ -3,6 +3,7 @@ import connectDb from './config/db.js'
 import Todos from './models/todoModel.js'
 import todoRoute from './routes/todoRoutes.js'
 import cors from "cors";
+import UserRoute from './routes/UserRoute.js'; 
 const app = express()
 connectDb()
 let port = 5000
@@ -12,6 +13,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
 app.use('/api/todo', todoRoute)
+app.use('/api/user',UserRoute)
 
 
 app.listen(port, () => console.log('server connected'))
+ 

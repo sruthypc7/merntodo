@@ -12,13 +12,13 @@ import "./Loginpage.css"
       <div className="container">
         <div className="form-container">
           <form >
-            <input type="text" placeholder="Enter your Username"/>
+            <input type="text" placeholder="Enter your Email id"/>
             
             
             <input type="text" placeholder="Enter your password"/>
            
 
-            <button type="submit">Submit</button>
+            <button class="bttn" type="submit" >Submit</button>
            </form>
         </div>
 
