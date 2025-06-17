@@ -4,8 +4,15 @@ import instance from '../axios';
 import { useNavigate } from 'react-router-dom';
 import { useGetTodosQuery,useCreateTodoMutation,useDeleteTodoMutation } from '../slices/todoApiSlice';
 
+import { useSelector } from 'react-redux';
+
+
+
+
 function Homescreen() {
   // let [state,updateState] = useState(initialValue)
+
+  const{userData}=useSelector((state)=>state.auth);
 
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
@@ -24,10 +31,6 @@ function Homescreen() {
       setTitle("");
       setDescription("");
         refetch();
-
-      
-
-      
     }
     catch(error){
       console.log(error)
@@ -43,13 +46,14 @@ function Homescreen() {
     catch(error){
       console.log(error);
     }
-
-
-
-    
-
-
   }
+
+  useEffect(()=>
+  {
+    if(!userData){
+      navigate("/login")
+    }
+  },[])
 
   return (
     <>

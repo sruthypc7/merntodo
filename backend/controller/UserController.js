@@ -1,9 +1,10 @@
+import asyncHandler from "../middleware/asyncHandler.js";
 import User from "../models/UserModel.js";
 import bcrypt from "bcrypt";
-const RegisterUser = async (req, res) => {
-    try {
+const RegisterUser = asyncHandler(async (req, res) => {
+    
         let { name, email, password } = req.body
-        let salt = await bcrypt.genSalt(10) //rancom values ne namukk kittiya password okke aayi mix chetyyan
+        let salt = await bcrypt.genSalt(10) //random values ne namukk kittiya password okke aayi mix chetyyan
         let encrtyptedPassword = await bcrypt.hash(password, salt);
         let ExistUser = await User.findOne({ emailid: email })
         if (ExistUser) {
@@ -15,15 +16,12 @@ const RegisterUser = async (req, res) => {
             password: encrtyptedPassword,
         });
         res.status(201).json(user)
-    }
-    catch (error) {
-        res.status(500).json(error);
+    })
+    
 
-    }
-}
 
-const LoginUser = async (req, res) => {
-    try {
+const LoginUser =asyncHandler( async (req, res) => {
+    
         let { email, password } = req.body
 
         let user = await User.findOne({ emailid: email })
@@ -34,11 +32,8 @@ const LoginUser = async (req, res) => {
             res.status(500).json({ message: "incorrect email or password" })
         }
     }
-    catch (error) {
-        res.status(500).json(error)
-
-    }
-}
+    
+)
 
 
 export { RegisterUser, LoginUser }
