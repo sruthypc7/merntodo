@@ -1,10 +1,11 @@
 import Todos from "../models/todoModel.js";
 let createTodo = async (req, res) => {
-    console.log(req.body);
+
     try {
         let todo = await Todos.create({
             title: req.body.title,
-            description: req.body.description
+            description: req.body.description,
+            userId: req.body.userId
         })
         res.json(todo)
     }
@@ -16,14 +17,14 @@ let createTodo = async (req, res) => {
 }
 let getTodos = async (req, res) => {
     try {
-        let todos = await Todos.find()
-        console.log(todos);
+        let todos = await Todos.find({ userId: req.query.userId })
         res.json(todos);
     }
     catch (error) {
         console.log(error);
     }
-}
+};
+
 const deleteTodo = async (req, res) => {
     //console.log(req.params.id)
     try {
@@ -37,34 +38,33 @@ const deleteTodo = async (req, res) => {
         console.log(error)
     }
 }
-const getTodoById=async (req,res)=>
-{
-    try{
-        let {id}=req.query
-        const todo=await Todos.findById(id)
+const getTodoById = async (req, res) => {
+    try {
+        let { id } = req.query
+        const todo = await Todos.findById(id)
         res.json(todo)
     }
-    catch(error){
+    catch (error) {
         console.log(error)
     }
 }
 
 
 const updateTodo = async (req, res) => {
-   // console.log(req.query.id)
-    try{
-        let {title,description,isCompleted}=req.body
-        const updatedTodo= await Todos.findByIdAndUpdate(req.body.id,{title ,description ,isCompleted })
-        if(!updatedTodo){
-            return   res.status(404).json({ message: 'todo is not found' })
+    // console.log(req.query.id)
+    try {
+        console.log(req)
+        let { title, description, iscompleted } = req.body
+        const updatedTodo = await Todos.findByIdAndUpdate(req.body.id, { title, description, iscompleted })
+        if (!updatedTodo) {
+            return res.status(404).json({ message: 'todo is not found' })
         }
         return res.json({ message: 'updated todo document successfully' })
 
     }
-    catch(error)
-    {
+    catch (error) {
         console.log(error)
     }
-   
+
 }
-export { createTodo, getTodos, deleteTodo, updateTodo,getTodoById}
+export { createTodo, getTodos, deleteTodo, updateTodo, getTodoById }

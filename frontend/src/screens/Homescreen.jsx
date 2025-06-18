@@ -1,10 +1,11 @@
 import './Homescreens.css'
 import { useState, useEffect } from "react";
-import instance from '../axios';
 import { useNavigate } from 'react-router-dom';
-import { useGetTodosQuery,useCreateTodoMutation,useDeleteTodoMutation } from '../slices/todoApiSlice';
+import { useGetTodosQuery, useCreateTodoMutation, useDeleteTodoMutation } from '../slices/todoApiSlice';
+import { useLogoutUserMutation } from '../slices/UserApiSlice';
+import { logout } from '../slices/authSlice';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
@@ -12,52 +13,64 @@ import { useSelector } from 'react-redux';
 function Homescreen() {
   // let [state,updateState] = useState(initialValue)
 
-  const{userData}=useSelector((state)=>state.auth);
+  const { userData } = useSelector((state) => state.auth);
 
   let [title, setTitle] = useState("");
   let [description, setDescription] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { data: todos, refetch } = useGetTodosQuery();
-  const [createTodo]=useCreateTodoMutation();
-  const [deleteTodo]=useDeleteTodoMutation();
+  const { data: todos, refetch } = useGetTodosQuery({ userId: userData?._id });
+  const [createTodo] = useCreateTodoMutation();
+  const [deleteTodo] = useDeleteTodoMutation();
+  const [userLogout] = useLogoutUserMutation()
 
 
   const submitHandler = async (e) => {
-    try{
+    try {
       e.preventDefault();
-      await createTodo({title,description});
+      await createTodo({ title, description, userId: userData?._id });
       setTitle("");
       setDescription("");
-        refetch();
+      refetch();
     }
-    catch(error){
+    catch (error) {
       console.log(error)
-
     }
   };
   let deletehandler = async (id) => {
 
-    try{
+    try {
       await deleteTodo(id)
-    refetch();
+      refetch();
     }
-    catch(error){
+    catch (error) {
       console.log(error);
     }
   }
 
-  useEffect(()=>
-  {
-    if(!userData){
+  useEffect(() => {
+    if (!userData) {
       navigate("/login")
     }
-  },[])
+  }, [])
+
+  const logoutHandler = async () => {
+    try {
+      await userLogout().unwrap();
+      await dispatch(logout());
+      navigate("/login");
+    }
+    catch (error) {
+      console.log(error);
+
+    }
+  }
 
   return (
     <>
-      <button className="delete-btn">Logout</button>
+      <button className="delete-btn" onClick={() => logoutHandler()}>Logout</button>
 
       <div className="container">
         <div className="form-container">

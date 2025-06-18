@@ -3,7 +3,9 @@ import "./RegisterPage.css"
 import { useRegisterUserMutation } from "../slices/UserApiSlice";
 import { useNavigate } from "react-router-dom";
 
+
 export default function RegisterPage() {
+  
   let [name, setName] = useState("");
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
@@ -23,6 +25,7 @@ export default function RegisterPage() {
 
     }
   };
+  
   return (
     <>
 

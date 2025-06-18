@@ -5,13 +5,13 @@ const notfound=(req,res,next)=>{
 };
 const ErrorHandler=(err,req,res,next)=>{
     if(res.headersSent){
-        return next(err)
+        return next(err);
     }
 
 
 const Statuscode=res.Statuscode=== 200?500:res.Statuscode;
 res.status(Statuscode).json({
-    message:err.message,
+    message: err.message,
 });
 };
 

@@ -2,7 +2,7 @@
 import "./Loginpage.css"
 import { useState } from "react";
 import {useLoginUserMutation} from "../slices/UserApiSlice";
-import { data, useNavigate } from "react-router-dom";
+import { data, useNavigate,Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../slices/authSlice";
 import { useEffect } from "react";
@@ -45,8 +45,6 @@ import { useEffect } from "react";
 
     return (
     <>
-      <button className="delete-btn">Logout</button>
-
       <div className="container">
         <div className="form-container">
           <form 
@@ -62,7 +60,11 @@ import { useEffect } from "react";
            
 
             <button className="bttn" type="submit" >Submit</button>
+            
            </form>
+            <p className="login-link">
+          Don't have an account? <Link to="/register">Register</Link>
+        </p>
         </div>
 
     </div>

@@ -1,26 +1,26 @@
 import Homescreen from "./screens/Homescreen"
-import {Route,Routes}from "react-router-dom"
-import  UpdateTodo from "./screens/updatetodo"
+import { Route, Routes } from "react-router-dom"
+import UpdateTodo from "./screens/updatetodo"
 import LoginPage from "./screens/LoginPage"
 import RegisterPage from "./screens/RegisterPage"
 
 
 function App() {
- 
+
 
   return (
-      <>
-      
+    <>
+
       <Routes>
-        <Route path="/" element={<Homescreen/>}/>
-        <Route path="/edit/:id" element={<UpdateTodo/>}/>
-        <Route path="/Login" element={<LoginPage/>}/>
-        <Route path="/Register"element={<RegisterPage/>}/>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/" element={<Homescreen />} />
+        <Route path="/edit/:id" element={<UpdateTodo />} />
       </Routes>
     </>
 
-  )
-  
+  );
+
 }
 
 export default App

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const connectDb= async()=>{
     try{
-        let connect=await mongoose.connect("mongodb+srv://sruthypc7:Sruthy*123@cluster0.l8noef0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+        let connect=await mongoose.connect(process.env.MONGO_URL)
         console.log('mongodb connected succesfully');
     }
     catch(error)
