@@ -70,9 +70,9 @@ function Homescreen() {
 
   return (
     <>
-      <button className="delete-btn" onClick={() => logoutHandler()}>Logout</button>
+      <button className="delete1-btn" onClick={() => logoutHandler()}>Logout</button>
 
-      <div className="container">
+      <div className="container3">
         <div className="form-container">
           <form onSubmit={submitHandler}>
             <input

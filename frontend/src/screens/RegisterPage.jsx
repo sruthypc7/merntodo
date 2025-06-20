@@ -30,10 +30,16 @@ export default function RegisterPage() {
     <>
 
 
-      <div className="container">
+      <div className="container" >
+        <div className="head">
+        <h1>TODO LIST</h1>
+        </div> 
         <div className="form-container">
-          <h3>Register page</h3>
-          <form onSubmit={registerHandler} >
+          
+          <h1>welcome! register now</h1>
+                
+            
+          <form onSubmit={registerHandler} className="form" >
             <input type="text" placeholder="Enter your name" value={name}
               onChange={(e) => setName(e.target.value)} />
 

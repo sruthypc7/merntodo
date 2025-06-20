@@ -1,1 +1,51 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.container1 h1{
+    margin: 30px 0px 0px 50px;
+}
+.form-container2 {
+    position: absolute;
+    top: 105px;
+    left: 50px;
+    background-color: rgb(74, 132, 199);
+    height: 250px;
+    width: 400px;
+}
+.input1,.input2{margin: 15px;
+    width: 90%;
+    height: 25px;
+    padding-left: 10px;
+}
 
+.head h1 {
+    font-size: 30px;
+   margin-bottom: 50px;
+    font-family:cursive;
+    color: rgba(7, 2, 17, 0.705);
+}
+.form-container h1{margin-bottom: 20px;
+    color: rgb(76, 22, 223);
+font-size: 30px;
+    text-align: center;
+    font-weight: bold;}
+
+.form-container2 button {
+    background-color: rgb(178, 186, 196);
+    position: absolute;
+    top:120px;
+    left:90px;
+    width:50%;
+    height: 25px;
+    border-radius: 5px;
+} 
+.login-link{
+    margin-top: 70px;
+    color: white;
+    margin-left: 10px;
+    font-size: 20px;
+} 
+.linkredirect{color: rgb(172, 44, 5);
+margin-left: 25px;}

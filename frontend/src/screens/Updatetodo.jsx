@@ -58,7 +58,7 @@ function UpdateTodo() {
 
           <textarea
             rows={5}
-            cols={10}
+            cols={12}
             placeholder="Enter description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}

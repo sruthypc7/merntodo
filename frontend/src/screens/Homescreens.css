@@ -18,7 +18,10 @@
 
 .form-container {
     width: 40%;
-    background: white;
+    
+      background: rgb(243, 241, 241);  
+     
+    
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -51,7 +54,7 @@
 }
 
 .form-container button:hover {
-    background-color: #1e4fd8;
+    background-color: #1ea3d8;
 }
 
 .todos-container {
@@ -65,12 +68,16 @@
     padding-right: 10px;
     scrollbar-width: thin;
     scrollbar-color: #4c51bf #f1f1f1;
+    margin-left: 400px;
 }
+
 
 /* Custom scrollbar for Webkit browsers */
 .todos-container::-webkit-scrollbar {
     width: 8px;
+    
 }
+
 
 .todo-card {
     background: rgba(255, 255, 255, 0.15);
@@ -80,10 +87,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 90%;
+    width: 50%;
     transition: 0.3s ease-in-out;
     border-left: 6px solid #4c51bf;
     backdrop-filter: blur(12px);
+    
+    
 }
 
 .todo-card:hover {
@@ -105,6 +114,7 @@
 .todo-description {
     font-size: 1rem;
     color: #34495e;
+    
     opacity: 0.9;
     line-height: 1.5;
 }
@@ -115,9 +125,19 @@
     margin-top: 12px;
 }
 
+.delete1-btn {
+    /* background: linear-gradient(135deg, #ff6b6b, #ff4757); */
+    background-color: #d44012;
+    position: absolute;
+    top:25px;
+    left: 20px;
+    color: white;
+}
+
 .delete-btn,
-.edit-btn {
+.edit-btn,.delete1-btn {
     padding: 10px 15px;
+    margin-left: 240px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
@@ -130,17 +150,22 @@
 }
 
 .delete-btn {
-    background: linear-gradient(135deg, #ff6b6b, #ff4757);
+    /* background: linear-gradient(135deg, #ff6b6b, #ff4757); */
+    background-color: #1ec28b;
+    position: absolute;
+    top:25px;
+    left: 20px;
     color: white;
 }
 
-.delete-btn:hover {
+.delete-btn:hover,delete1-btn:hover {
     background: linear-gradient(135deg, #ff4757, #d63031);
 }
 
 .edit-btn {
     background: linear-gradient(135deg, #48c6ef, #6f86d6);
     color: white;
+    width: 100px;
 }
 
 .edit-btn:hover {

@@ -1,4 +1,4 @@
-import express from "express"
+import express from "express"//this route is only for backend
 import { LoginUser, RegisterUser,LogoutUser } from "../controller/UserController.js"
 const UserRoute = express.Router()
 UserRoute.post("/", LoginUser)

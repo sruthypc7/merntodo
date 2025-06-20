@@ -45,25 +45,26 @@ import { useEffect } from "react";
 
     return (
     <>
-      <div className="container">
-        <div className="form-container">
+      <div className="container1">
+        <h1>Login</h1>
+        <div className="form-container2">
           <form 
           onSubmit={LoginHndler}>
-            <input type="text" placeholder="Enter your Email id"value={email}
+            <input type="text" className="input1" placeholder="Enter your Email id"value={email}
               
-              onChange={(e) => setEmail(e.target.value)} />
+              onChange={(e) => setEmail(e.target.value)} /><br></br>
             
             
-            <input type="text" placeholder="Enter your password" value={password}
+            <input type="text"className="input2" placeholder="Enter your password" value={password}
               
-              onChange={(e) => setPassword(e.target.value)} />
+              onChange={(e) => setPassword(e.target.value)} /><br></br>
            
 
             <button className="bttn" type="submit" >Submit</button>
             
            </form>
             <p className="login-link">
-          Don't have an account? <Link to="/register">Register</Link>
+          Don't have an account? <Link to="/register" className="linkredirect">Register Now!</Link>
         </p>
         </div>
 

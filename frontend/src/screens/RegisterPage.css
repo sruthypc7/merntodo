@@ -1,1 +1,40 @@
-.btn2{background-color: cadetblue;}
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: rgb(190, 175, 219);
+    background-size: auto;
+    
+    position: relative;
+}
+
+.form-container {
+    position: absolute;
+    top: 105px;
+    background-color: lavender;
+}
+
+.head h1 {
+    font-size: 30px;
+   margin-bottom: 50px;
+    font-family:cursive;
+    color: rgba(7, 2, 17, 0.705);
+}
+.form-container h1{margin-bottom: 20px;
+    color: rgb(76, 22, 223);
+font-size: 30px;
+    text-align: center;
+    font-weight: bold;}
+
+
+
+
+
+
+
+.form-container button {
+    background-color: rgb(190, 102, 212);
+}
